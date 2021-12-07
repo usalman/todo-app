@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useRef} from 'react'
 
 function Form({inputText, setInputText, todos, setTodos}) {
 
+  const inputRef = useRef(null)
   const handleChange = (e) => {
     e.preventDefault()
     setInputText(e.target.value)
@@ -10,13 +11,14 @@ function Form({inputText, setInputText, todos, setTodos}) {
   const handleSubmit = (e) => {
     e.preventDefault()
     setTodos([
-      ... todos, {text: inputText, completed: false, id: Math.random() * 12134}
+      ...todos, {text: inputText, completed: false, id: Math.random() * 12134}
     ])
+    inputRef.current.value = ""
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input onChange={handleChange} type="text" />
+      <input ref={inputRef} onChange={handleChange} type="text" />
       <button type="submit">Button</button>
       <div className="select">
         <select name="todos">
