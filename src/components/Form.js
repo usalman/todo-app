@@ -1,14 +1,21 @@
 import React from 'react'
 
-function Form({inputText, setInputText}) {
+function Form({inputText, setInputText, todos, setTodos}) {
 
   const handleChange = (e) => {
+    e.preventDefault()
     setInputText(e.target.value)
-    console.log(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setTodos([
+      ... todos, {text: inputText, completed: false, id: Math.random() * 12134}
+    ])
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input onChange={handleChange} type="text" />
       <button type="submit">Button</button>
       <div className="select">
