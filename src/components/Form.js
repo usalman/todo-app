@@ -1,13 +1,13 @@
 import React, {useRef} from 'react'
 
-function Form({inputText, setInputText, todos, setTodos}) {
+function Form({inputText, setInputText, todos, setTodos, setStatus}) {
 
   const inputRef = useRef(null)
   const handleChange = (e) => {
     e.preventDefault()
     setInputText(e.target.value)
   }
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     setTodos([
@@ -16,12 +16,16 @@ function Form({inputText, setInputText, todos, setTodos}) {
     inputRef.current.value = ""
   }
 
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value)
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <input ref={inputRef} onChange={handleChange} type="text" />
       <button type="submit">Button</button>
       <div className="select">
-        <select name="todos">
+        <select onChange={handleStatusChange} name="todos">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>
