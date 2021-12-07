@@ -1,9 +1,14 @@
 import './App.css';
+import { useState } from 'react'
+import Form from './components/Form'
+import TodoList from './components/TodoList'
 
 function App() {
+  
   return (
     <div className="App">
-      
+      <Form />
+      <TodoList />
     </div>
   );
 }
